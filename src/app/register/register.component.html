@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="text-center mb-4">Register</h2>
+            <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" class="form-control" [(ngModel)]="user.username" name="username" 
+                       required minlength="3" maxlength="20">
+                <div *ngIf="registerForm.controls['username']?.invalid && registerForm.controls['username']?.touched" class="text-danger">
+                  Username must be 3-20 characters long.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-control" [(ngModel)]="user.password" name="password" 
+                       required (ngModelChange)="checkPasswords()">
+                <div *ngIf="registerForm.controls['password']?.invalid && registerForm.controls['password']?.touched" class="text-danger">
+                  Password is required.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" id="confirmPassword" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword" 
+                       required (ngModelChange)="checkPasswords()" 
+                       [ngClass]="{'is-invalid': !passwordsMatch && confirmPasswordTouched}">
+                <div *ngIf="!passwordsMatch && confirmPasswordTouched" class="text-danger">
+                  Passwords do not match.
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid || !passwordsMatch">Register</button>
+              <p class="my-2">Already have an account? <a [routerLink]="['/login']">Login</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
