@@ -35,8 +35,14 @@ export class GroupService {
     return this.httpClient.get<any[]>(`${this.url}/api/Group/mygroups`)
       .pipe(
         tap(groups => {
+          console.log('API response groups:', groups);  // Log the groups data
           this.groupsSubject.next(groups);
         })
       );
   }
+
+  getLinksByGroupId(groupId: number): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.url}/api/Group/group/${groupId}/links`);
+  }
+
 }

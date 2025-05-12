@@ -1,0 +1,23 @@
+<div *ngIf="isLoggedIn" class="container my-4">
+    <h4 class="mb-3 text-dark text-center">Your Groups</h4>
+    <div class="card shadow-sm">
+      <div class="card-body p-0">
+        <table class="table table-hover table-striped table-bordered mb-0">
+          <thead class="table-dark text-center">
+            <tr>
+              <th scope="col">Group Name</th>
+              <th scope="col">Group Description</th>
+              <th scope="col">Group ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-center" *ngFor="let item of groups">
+              <td>{{ item.groupName }}</td>
+              <td>{{ item.groupDescription }} </td>
+              <td>{{ item.groupId }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>

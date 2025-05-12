@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { GroupLinksComponent } from './group-links.component';
+
+describe('GroupLinksComponent', () => {
+  let component: GroupLinksComponent;
+  let fixture: ComponentFixture<GroupLinksComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [GroupLinksComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(GroupLinksComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

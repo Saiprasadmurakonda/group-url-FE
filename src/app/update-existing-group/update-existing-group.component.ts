@@ -5,12 +5,13 @@ import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-update-existing-group',
   standalone: false,
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  templateUrl: './update-existing-group.component.html',
+  styleUrl: './update-existing-group.component.css'
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class UpdateExistingGroupComponent {
+
   isLoggedIn = false;
   groups: any[] = [];
   private authSubscription!: Subscription;
@@ -71,24 +72,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   viewGroupLinks(groupId: number) {
       console.log('Navigating to group:', groupId); // ✅ Check if this logs a valid ID
 
-    this.router.navigate(['/group-links', groupId]);
+    this.router.navigate(['/updateLinkInExistingGroup', groupId]);
+
   }
   
-  addGroup(){
-    this.router.navigate(['/addgroup']);
+  deleteGroup(groupId: number){
+    this.router.navigate(['/deleteGroup', groupId]);
   }
 
-  updateExistingGroup(){
-    this.router.navigate(['/updateExistingGroup']);
-  }
-
-  viewGroup(){
-    this.router.navigate(['/viewGroup']);
-  }
-
-  deleteGroup(){
-    this.router.navigate(['/deleteGroup']);
-  }
   logout() {
     this.authService.logout();
   }

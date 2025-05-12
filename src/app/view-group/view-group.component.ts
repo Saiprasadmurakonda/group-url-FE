@@ -5,12 +5,13 @@ import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-view-group',
   standalone: false,
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  templateUrl: './view-group.component.html',
+  styleUrl: './view-group.component.css'
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class ViewGroupComponent {
+
   isLoggedIn = false;
   groups: any[] = [];
   private authSubscription!: Subscription;
@@ -74,21 +75,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/group-links', groupId]);
   }
   
-  addGroup(){
-    this.router.navigate(['/addgroup']);
-  }
 
-  updateExistingGroup(){
-    this.router.navigate(['/updateExistingGroup']);
-  }
 
-  viewGroup(){
-    this.router.navigate(['/viewGroup']);
-  }
-
-  deleteGroup(){
-    this.router.navigate(['/deleteGroup']);
-  }
   logout() {
     this.authService.logout();
   }

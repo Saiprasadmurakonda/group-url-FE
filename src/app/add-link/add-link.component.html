@@ -1,0 +1,15 @@
+<form #loginForm="ngForm" (ngSubmit)="addLink()">
+
+
+    <label for="groupId">Group ID</label>
+<input type="number" name="groupId" [(ngModel)]="groupId" placeholder="Enter Group ID" class="form-control" disabled/>
+    <!-- Amount -->
+    <label for="actualLink">Long URL</label>
+    <input type="text" name="actualLink" [value]="link.actualLink" placeholder="Enter Long URL" class="form-control" ngModel (input)="link.actualLink=$any($event.target).value" #actualLink="ngModel" width="400"/>  
+    
+    <!-- Description -->
+    <label for="description">Description</label>
+    <input type="text" name="description" [value]="link.description" placeholder="Enter description" class="form-control" ngModel (input)="link.description=$any($event.target).value" #description="ngModel"/>
+    
+    <button class="btn btn-primary">Add</button>
+</form>
