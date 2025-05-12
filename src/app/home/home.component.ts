@@ -86,9 +86,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/viewGroup']);
   }
 
-  deleteGroup(){
-    this.router.navigate(['/deleteGroup']);
-  }
+ 
   logout() {
     this.authService.logout();
   }
