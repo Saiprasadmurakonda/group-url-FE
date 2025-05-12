@@ -1,0 +1,31 @@
+<div *ngIf="isLoading" class="text-center">
+    <p>Loading links...</p>
+  </div>
+  <div *ngIf="!isLoading" class="container my-4">
+    <h4 class="mb-3 text-dark text-center">Group Links</h4>
+    <div class="card shadow-sm">
+      <div class="card-body p-0">
+        <table class="table table-hover table-striped table-bordered mb-0" *ngIf="links && links.length > 0">
+            <thead class="table-dark text-center" >
+              <tr>
+                <th scope="col">Link</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let link of links">
+              <td>{{ link.actualLink }}</td>
+              <td>{{ link.description }}</td>
+              <td><button class="btn btn-outline-success" (click)="updateLink(link)">Update</button></td>
+            </tr>
+          </tbody>      
+        </table>
+      </div>
+      <br>
+      
+  
+      <button class="btn btn-outline-success" (click)="addLink()">Add New link</button>
+  
+    </div>
+  </div>

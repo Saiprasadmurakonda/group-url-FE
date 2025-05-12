@@ -1,0 +1,31 @@
+<div class="container mt-4">
+    <form #linkForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <input type="hidden" name="id" [(ngModel)]="linkData.id" />
+      </div>
+      <div class="mb-3">
+        <label for="actualLink" class="form-label">Link</label>
+        <input
+          type="text"
+          id="actualLink"
+          class="form-control"
+          name="actualLink"
+          [(ngModel)]="linkData.actualLink"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input
+          type="text"
+          id="description"
+          class="form-control"
+          name="description"
+          [(ngModel)]="linkData.description"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+  

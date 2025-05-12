@@ -1,0 +1,27 @@
+<div *ngIf="isLoggedIn" class="container my-4">
+    <h4 class="mb-3 text-dark text-center">Select which group you want to Add or Update</h4>
+    <div class="card shadow-sm">
+      <div class="card-body p-0">
+        <table class="table table-hover table-striped table-bordered mb-0">
+          <thead class="table-dark text-center">
+            <tr>
+              <th scope="col">Group Name</th>
+              <th scope="col">Group Description</th>
+              <th scope="col">Group ID</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-center" *ngFor="let item of groups">
+              <td>{{ item.groupName }}</td>
+              <td>{{ item.groupDescription }} </td>
+              <td>{{ item.groupId }}</td>
+              <td><button class="btn btn-outline-success" (click)="viewGroupLinks(item.groupId)">Update</button>
+              <button class="btn btn-outline-danger" (click)="deleteGroup(item.groupId)">Delete</button></td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>

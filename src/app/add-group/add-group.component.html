@@ -1,0 +1,12 @@
+<form #loginForm="ngForm" (ngSubmit)="addGroup()">
+    
+    <!-- Amount -->
+    <label for="groupName">Group Name</label>
+    <input type="text" name="groupName" [value]="group.groupName" placeholder="Enter Group Name" class="form-control" ngModel (input)="group.groupName=$any($event.target).value" #groupName="ngModel" width="400"/>  
+    
+    <!-- Description -->
+    <label for="groupDescription">Group Description</label>
+    <input type="text" name="groupDescription" [value]="group.groupDescription" placeholder="Enter Group description" class="form-control" ngModel (input)="group.groupDescription=$any($event.target).value" #groupDescription="ngModel"/>
+    
+    <button class="btn btn-primary">Add</button>
+</form>
