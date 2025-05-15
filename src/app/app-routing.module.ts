@@ -11,20 +11,24 @@ import { UpdateExistingGroupComponent } from './update-existing-group/update-exi
 import { UpdateLinkInExistingGroupComponent } from './update-link-in-existing-group/update-link-in-existing-group.component';
 import { UpdateLinkComponent } from './update-link/update-link.component';
 import { DeleteGroupComponent } from './delete-group/delete-group.component';
+import { IndividualgroupComponent } from './individualgroup/individualgroup.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: UpdateExistingGroupComponent},
   { path: 'addgroup', component: AddGroupComponent },
+  { path: 'addlink', component: AddLinkComponent },
   { path: 'addlink/:groupId', component: AddLinkComponent },
   { path: 'group-links/:groupId', component: GroupLinksComponent },
   { path: 'viewGroup', component: ViewGroupComponent },
-  { path: 'updateExistingGroup', component: UpdateExistingGroupComponent } ,
+  // { path: 'updateExistingGroup', component: UpdateExistingGroupComponent } ,
   { path: 'updateLinkInExistingGroup/:groupId', component: UpdateLinkInExistingGroupComponent } ,
   { path: 'update-link/:id', component: UpdateLinkComponent }  ,
-  { path: 'deleteGroup/:groupId', component: DeleteGroupComponent }   
+  { path: 'deleteGroup/:groupId', component: DeleteGroupComponent },
+  { path: 'individualgroup', component: IndividualgroupComponent }
+
  
 
 

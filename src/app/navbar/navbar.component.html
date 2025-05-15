@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="home">GroupURL</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Left side links (shown only when logged in) -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="isLoggedIn">
+          <li class="nav-item">
+            <a class="nav-link fw-bold text-white" 
+               routerLink="home" 
+               routerLinkActive="active-link" 
+               [routerLinkActiveOptions]="{ exact: true }">
+               Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-bold text-white" 
+               routerLink="addgroup" 
+               routerLinkActive="active-link" 
+               [routerLinkActiveOptions]="{ exact: true }">
+               Add Group
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-bold text-white" 
+               routerLink="addlink" 
+               routerLinkActive="active-link" 
+               [routerLinkActiveOptions]="{ exact: true }">
+               Add Link
+            </a>
+          </li>
+        </ul>
+        
+        
+        <!-- Right side login/logout buttons -->
+        <div class="d-flex ms-auto">
+          <button 
+            class="btn btn-danger me-2 mx-2" 
+            *ngIf="isLoggedIn" 
+            (click)="logout()">Logout</button>
+  
+          <a 
+            class="btn btn-primary" 
+            *ngIf="!isLoggedIn" 
+            routerLink="/login">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>

@@ -36,7 +36,7 @@ addGroup() {
       console.log('SUCCESS');
       console.log(response);
       window.alert("Group Added")
-      this.router.navigate([''])
+      this.router.navigate(['/home'])
       // this.router.navigate(['view-all-expenses'])
     },(error: any)=>{console.log(error);});
 

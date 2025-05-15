@@ -1,5 +1,5 @@
 <div *ngIf="isLoggedIn" class="container my-4">
-    <h4 class="mb-3 text-dark text-center">Select which group you want to Add or Update</h4>
+    <h4 class="mb-3 text-dark text-center">My Groups</h4>
     <div class="card shadow-sm">
       <div class="card-body p-0">
         <table class="table table-hover table-striped table-bordered mb-0">
@@ -16,8 +16,11 @@
               <td>{{ item.groupName }}</td>
               <td>{{ item.groupDescription }} </td>
               <td>{{ item.groupId }}</td>
-              <td><button class="btn btn-outline-success" (click)="viewGroupLinks(item.groupId)">Update</button>
-              <button class="btn btn-outline-danger" (click)="deleteGroup(item.groupId)">Delete</button></td>
+              <td>
+                <button class="btn btn-outline-primary mx-2" (click)="viewIndividualGroup(item)">View</button>
+                <button class="btn btn-outline-success mx-2" (click)="viewGroupLinks(item.groupId)">Update</button>
+                <button class="btn btn-outline-danger" (click)="deleteGroup(item.groupId)">Delete</button>
+            </td>
 
             </tr>
           </tbody>

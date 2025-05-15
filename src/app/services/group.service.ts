@@ -45,4 +45,5 @@ export class GroupService {
     return this.httpClient.get<any[]>(`${this.url}/api/Group/group/${groupId}/links`);
   }
 
+
 }

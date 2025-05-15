@@ -24,7 +24,12 @@ export class GroupLinksComponent implements OnInit {
 
   ngOnInit(): void {
     // Get groupId from route parameters
-    this.groupId = Number(this.route.snapshot.paramMap.get('groupId'));
+    if(this.route.snapshot.paramMap.get('groupId') !== null){
+      this.groupId = Number(this.route.snapshot.paramMap.get('groupId'));
+    }
+    else{
+      this.groupId = 0;
+    }
     
     // Fetch the links for the group
     this.fetchGroupLinks();
@@ -49,7 +54,7 @@ export class GroupLinksComponent implements OnInit {
   // this.router.navigate(['/group-links', groupId]);
 }
 addLink(){
-  this.router.navigate(['/add-link']);
+  this.router.navigate(['/add-link', this.groupId]);
 }
 
 }

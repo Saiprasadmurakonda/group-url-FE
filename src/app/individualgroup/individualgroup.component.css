@@ -1,0 +1,31 @@
+.card {
+    background-color: #fefefe;
+  }
+  
+  th, td {
+    padding: 0.6rem 0.75rem;
+  }
+  
+  .btn-outline-primary {
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  h4, h6 {
+    margin: 0;
+  }
+  
+  .table td,
+  .table th {
+    font-size: 1.1rem; /* Adjust size as needed */
+    padding: 0.75rem;
+  }
+
+  .link-button {
+    font-size: 0.9rem;
+    max-width: 400px;
+  }
+  

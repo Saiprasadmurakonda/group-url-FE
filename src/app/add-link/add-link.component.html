@@ -1,15 +1,78 @@
-<form #loginForm="ngForm" (ngSubmit)="addLink()">
-
-
-    <label for="groupId">Group ID</label>
-<input type="number" name="groupId" [(ngModel)]="groupId" placeholder="Enter Group ID" class="form-control" disabled/>
-    <!-- Amount -->
-    <label for="actualLink">Long URL</label>
-    <input type="text" name="actualLink" [value]="link.actualLink" placeholder="Enter Long URL" class="form-control" ngModel (input)="link.actualLink=$any($event.target).value" #actualLink="ngModel" width="400"/>  
-    
-    <!-- Description -->
-    <label for="description">Description</label>
-    <input type="text" name="description" [value]="link.description" placeholder="Enter description" class="form-control" ngModel (input)="link.description=$any($event.target).value" #description="ngModel"/>
-    
-    <button class="btn btn-primary">Add</button>
-</form>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow rounded-4 overflow-hidden" style="width: 100%; max-width: 500px;">
+    <div class="card-header p-4 text-center">
+      <h4 class="mb-0 fw-bold">
+        <i class="fas fa-link title-icon"></i>Add New Link
+      </h4>
+    </div>
+    <div class="card-body p-4">
+      <form #linkForm="ngForm" (ngSubmit)="addLink()">
+        <!-- Group Dropdown -->
+        <div class="mb-4">
+          <label for="groupId" class="form-label fw-medium mb-2">
+            <i class="fas fa-folder-open me-2 text-primary"></i>Select Group
+          </label>
+          <div class="input-with-icon">
+            <i class="fas fa-layer-group input-icon"></i>
+            <select
+              id="groupId"
+              class="form-select"
+              name="groupId"
+              [(ngModel)]="link.groupId"
+              required
+            >
+              <option [ngValue]="null" disabled selected>Select a group</option>
+              <option *ngFor="let group of groups" [ngValue]="group.groupId">
+                {{ group.groupName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Long URL -->
+        <div class="mb-4">
+          <label for="actualLink" class="form-label fw-medium mb-2">
+            <i class="fas fa-globe me-2 text-primary"></i>Long URL
+          </label>
+          <div class="input-with-icon">
+            <i class="fas fa-link input-icon"></i>
+            <input
+              id="actualLink"
+              type="url"
+              name="actualLink"
+              [(ngModel)]="link.actualLink"
+              placeholder="Enter the complete URL"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        
+        <!-- Description -->
+        <div class="mb-4">
+          <label for="description" class="form-label fw-medium mb-2">
+            <i class="fas fa-align-left me-2 text-primary"></i>Description
+          </label>
+          <div class="input-with-icon">
+            <i class="fas fa-comment input-icon"></i>
+            <input
+              id="description"
+              type="text"
+              name="description"
+              [(ngModel)]="link.description"
+              placeholder="Brief description of this link"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus me-2"></i>Add Link
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

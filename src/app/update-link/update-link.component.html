@@ -1,31 +1,70 @@
-<div class="container mt-4">
-    <form #linkForm="ngForm" (ngSubmit)="onSubmit()">
-      <div class="mb-3">
-        <input type="hidden" name="id" [(ngModel)]="linkData.id" />
-      </div>
-      <div class="mb-3">
-        <label for="actualLink" class="form-label">Link</label>
-        <input
-          type="text"
-          id="actualLink"
-          class="form-control"
-          name="actualLink"
-          [(ngModel)]="linkData.actualLink"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <input
-          type="text"
-          id="description"
-          class="form-control"
-          name="description"
-          [(ngModel)]="linkData.description"
-        />
-      </div>
-      <button type="submit" class="btn btn-primary">Update</button>
-    </form>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow rounded-4 overflow-hidden" style="width: 100%; max-width: 500px;">
+    <div class="card-header p-4 text-center">
+      <h4 class="mb-0 fw-bold">
+        <i class="fas fa-edit title-icon"></i>Update Link
+      </h4>
+    </div>
+    <div class="card-body p-4">
+      <form #linkForm="ngForm" (ngSubmit)="onSubmit()">
+        <!-- Hidden ID field -->
+        <div class="mb-3">
+          <input type="hidden" name="id" [(ngModel)]="linkData.id" />
+        </div>
+        
+        <!-- Link URL -->
+        <div class="mb-4">
+          <label for="actualLink" class="form-label mb-2">
+            <i class="fas fa-globe me-2 text-primary"></i>Link URL
+          </label>
+          <div class="input-with-icon">
+            <i class="fas fa-link input-icon"></i>
+            <input
+              type="text"
+              id="actualLink"
+              class="form-control"
+              name="actualLink"
+              [(ngModel)]="linkData.actualLink"
+              placeholder="https://example.com"
+              required
+            />
+          </div>
+          <div class="field-helper">
+            The complete URL including http:// or https://
+          </div>
+        </div>
+        
+        <!-- Description -->
+        <div class="mb-4">
+          <label for="description" class="form-label mb-2">
+            <i class="fas fa-align-left me-2 text-primary"></i>Description
+          </label>
+          <div class="input-with-icon">
+            <i class="fas fa-comment input-icon"></i>
+            <input
+              type="text"
+              id="description"
+              class="form-control"
+              name="description"
+              [(ngModel)]="linkData.description"
+              placeholder="Briefly describe this link"
+            />
+          </div>
+          <div class="field-helper">
+            A short description to help identify this link
+          </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="form-actions mt-4">
+          <button type="button" class="btn btn-secondary flex-grow-1">
+            <i class="fas fa-times me-2"></i>Cancel
+          </button>
+          <button type="submit" class="btn btn-primary flex-grow-1">
+            <i class="fas fa-save me-2"></i>Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
-
-  

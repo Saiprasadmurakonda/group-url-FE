@@ -1,0 +1,4 @@
+.active-link {
+  /* text-decoration: underline; */
+  color: #ffd700 !important; /* bright gold/yellow for visibility */
+}

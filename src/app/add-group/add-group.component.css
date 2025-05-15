@@ -1,0 +1,82 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+  
+  .card {
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-label {
+    color: #495057;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .form-control {
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+    border-color: #86b7fe;
+  }
+  
+  .btn-primary {
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    background: linear-gradient(to right, #0d6efd, #0099ff);
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    background: linear-gradient(to right, #0958cc, #007acc);
+  }
+  
+  .card-header {
+    border-radius: 10px 10px 0 0 !important;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    border-bottom: none;
+  }
+  
+  .title-icon {
+    color: #0d6efd;
+    margin-right: 10px;
+  }
+  
+  .input-with-icon {
+    position: relative;
+  }
+  
+  .input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    color: #adb5bd;
+  }
+  
+  .input-with-icon .form-control {
+    padding-left: 35px;
+  }
+  
+  .field-helper {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+    margin-left: 0.25rem;
+  }

@@ -17,6 +17,8 @@ import { UpdateExistingGroupComponent } from './update-existing-group/update-exi
 import { UpdateLinkInExistingGroupComponent } from './update-link-in-existing-group/update-link-in-existing-group.component';
 import { UpdateLinkComponent } from './update-link/update-link.component';
 import { DeleteGroupComponent } from './delete-group/delete-group.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { IndividualgroupComponent } from './individualgroup/individualgroup.component';
 // import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
@@ -31,7 +33,9 @@ import { DeleteGroupComponent } from './delete-group/delete-group.component';
     UpdateExistingGroupComponent,
     UpdateLinkInExistingGroupComponent,
     UpdateLinkComponent,
-    DeleteGroupComponent
+    DeleteGroupComponent,
+    NavbarComponent,
+    IndividualgroupComponent
     ],
   imports: [
     BrowserModule,
