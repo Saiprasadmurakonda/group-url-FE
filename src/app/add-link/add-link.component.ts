@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ApiCallService } from '../api-call.service';
 import { GroupService } from '../services/group.service';
+import { Location } from '@angular/common';
+
 
 
 @Component({
@@ -17,7 +19,8 @@ export class AddLinkComponent implements OnInit {
 link: link ;
 groupId: number = 0;
 groups: any[]= [];
-  constructor(private service: ApiCallService, private route: ActivatedRoute,private router: Router, private grpservice: GroupService ) {
+isLoading: boolean = false;
+  constructor(private service: ApiCallService, private route: ActivatedRoute,private router: Router, private grpservice: GroupService, private location: Location)  {
     
     const helper= this.getUserDetails()
     this.link = { id:0, groupId:0, actualLink: "",  description:""};
@@ -48,6 +51,7 @@ groups: any[]= [];
 
   
   addLink() {
+    this.isLoading = true;
     console.log('Selected groupId:', this.link.groupId); // Check selected groupId
     
     console.log('Token is ', localStorage.getItem('token'));
@@ -55,24 +59,30 @@ groups: any[]= [];
     
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${helper.token}`
-  });
-  const options = { headers };
-  
-  let { ...LinkForPost } = this.link;
-  console.log('Link for post:', LinkForPost); // Log the final data being sent
-  
-  this.service.addLink(LinkForPost, options).subscribe(
-    (response: any) => {
-      console.log('SUCCESS');
-      console.log(response);
-      window.alert("Link Added");
-      this.router.navigate(['/home'])
-    },
-    (error: any) => {
-      console.log(error);
-    }
-  );
-}
+    });
+    const options = { headers };
+    
+    let { ...LinkForPost } = this.link;
+    console.log('Link for post:', LinkForPost); // Log the final data being sent
+    
+    this.service.addLink(LinkForPost, options).subscribe(
+      (response: any) => {
+        console.log('SUCCESS');
+        console.log(response);
+        window.alert("Link Added");
+        this.router.navigate(['/updateLinkInExistingGroup/'+this.link.groupId]);
+      },
+     (error: any) => {
+        console.error(error);
+        window.alert(error?.error?.message || 'Something went wrong');
+        this.isLoading = false;
+      }
+    );
+  }
+
+  onCancel() { 
+    this.location.back();
+  }
 
 
 getUserDetails() {

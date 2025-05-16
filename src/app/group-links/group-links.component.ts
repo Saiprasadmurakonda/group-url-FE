@@ -54,7 +54,7 @@ export class GroupLinksComponent implements OnInit {
   // this.router.navigate(['/group-links', groupId]);
 }
 addLink(){
-  this.router.navigate(['/add-link', this.groupId]);
+  this.router.navigate(['/addlink', this.groupId]);
 }
 
 }

@@ -18,10 +18,12 @@ export class LoginComponent {
     password: new FormControl('', Validators.required)
   });
   
+  isLoading: boolean = false;
   constructor(private service:AuthService, private router:Router) { }
   
   onSubmit() {
     if (this.loginForm.valid) {
+      this.isLoading = true;
       this.service.login(this.loginForm.value).subscribe((res:any) => {
         if (res) {
           localStorage.setItem('token', res.token);
@@ -29,10 +31,12 @@ export class LoginComponent {
         } else {
           // alert('Invalid credentials');
           this.loginError = 'Invalid credentials';
+          this.isLoading = false;
         }
       }, err => {
         // alert('Invalid credentials');
         this.loginError = 'Invalid credentials';
+        this.isLoading = false;
       });
     } 
     else {

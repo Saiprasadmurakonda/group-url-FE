@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { GroupService } from '../services/group.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-update-link-in-existing-group',
@@ -20,8 +22,12 @@ export class UpdateLinkInExistingGroupComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private httpClient: HttpClient
   ) {}
+
+
+  
 
   ngOnInit(): void {
     // Get groupId from route parameters
@@ -54,4 +60,23 @@ addLink(){
   this.router.navigate(['/addlink',this.groupId]);
 }
 
+deleteLink(groupId: number, tag: number): void {
+  if(confirm('Are you sure you want to delete this link?')){
+    this.groupService.deleteLink(groupId, tag).subscribe(
+      (response) => {
+        console.log('Link deleted successfully:', response);
+        alert('Link deleted successfully');
+        // Optionally, refresh the links after deletion
+        this.fetchGroupLinks();
+      }, 
+      (error) => {
+        console.error('Error deleting link:', error);
+        // Handle error if needed
+      }
+    );
+  }
 }
+
+}
+
+

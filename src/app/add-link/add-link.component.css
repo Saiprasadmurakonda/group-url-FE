@@ -34,6 +34,7 @@ body {
   .btn-primary {
     padding: 12px;
     border-radius: 8px;
+    margin-left: 3px;
     font-weight: 500;
     letter-spacing: 0.5px;
     transition: all 0.3s;
@@ -42,8 +43,8 @@ body {
   }
   
   .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    /* transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3); */
     background: linear-gradient(to right, #0958cc, #007acc);
   }
   
@@ -73,4 +74,14 @@ body {
   .input-with-icon .form-control,
   .input-with-icon .form-select {
     padding-left: 35px;
+  }
+
+  .btn-secondary {
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    background: #6c757d;
+    border: none;
   }

@@ -11,7 +11,12 @@
           <label for="password" class="form-label">Password</label>
           <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
         </div>
-        <button type="submit" class="btn btn-primary w-100">Login</button>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Login</span>
+            <span *ngIf="isLoading">
+              <i class="fas fa-spinner fa-spin me-2"></i>Logging in...
+            </span>
+        </button>
         <div *ngIf="loginError" class="alert alert-danger mt-3">{{ loginError }}</div> 
         <p class="text-center mt-3">Don't have an account? <a [routerLink]="['/register']">Register</a></p>
       </form>

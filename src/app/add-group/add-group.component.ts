@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ApiCallService } from '../api-call.service';
+import { Location } from '@angular/common';
+
 
 
 @Component({
@@ -17,7 +19,8 @@ import { ApiCallService } from '../api-call.service';
 export class AddGroupComponent {
   // groupId, userId, groupName, groupURL, counterValue, groupDescription
   group: group ;
-  constructor(private service: ApiCallService, private router: Router) {
+  loading: boolean = false;
+  constructor(private service: ApiCallService, private router: Router, private location: Location) {
     const helper= this.getUserDetails()
     this.group = { groupId: 0, groupName: "",  groupDescription:""};
   }
@@ -38,11 +41,18 @@ addGroup() {
       window.alert("Group Added")
       this.router.navigate(['/home'])
       // this.router.navigate(['view-all-expenses'])
-    },(error: any)=>{console.log(error);});
+    },
+    (error: any)=>{
+      console.log(error);
+      window.alert(error?.error?.message || 'Something went wrong');
+        this.loading = false;
+    });
 
 }
 
-
+onCancel() {
+  this.location.back();
+}
 
 getUserDetails() {
   return {

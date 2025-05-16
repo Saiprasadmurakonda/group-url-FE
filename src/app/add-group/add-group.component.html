@@ -1,67 +1,97 @@
 <div class="container mt-5 d-flex justify-content-center">
-    <div class="card shadow rounded-4 overflow-hidden" style="width: 100%; max-width: 500px;">
-      <div class="card-header p-4 text-center">
-        <h4 class="mb-0 fw-bold">
-          <i class="fas fa-layer-group title-icon"></i>Create New Group
-        </h4>
-      </div>
-      <div class="card-body p-4">
-        <form #loginForm="ngForm" (ngSubmit)="addGroup()">
-          
-          <!-- Group Name -->
-          <div class="mb-4">
-            <label for="groupName" class="form-label fw-medium mb-2">
-              <i class="fas fa-tag me-2 text-primary"></i>Group Name
-            </label>
-            <div class="input-with-icon">
-              <i class="fas fa-font input-icon"></i>
-              <input type="text"
-                     id="groupName"
-                     name="groupName"
-                     [value]="group.groupName"
-                     placeholder="Enter group name"
-                     class="form-control"
-                     ngModel
-                     (input)="group.groupName=$any($event.target).value"
-                     #groupName="ngModel"
-                     required />
-            </div>
-            <div class="field-helper">
-              Choose a clear, concise name for your group
-            </div>
+  <div
+    class="card shadow rounded-4 overflow-hidden"
+    style="width: 100%; max-width: 500px"
+  >
+    <div class="card-header p-4 text-center">
+      <h4 class="mb-0 fw-bold">
+        <i class="fas fa-layer-group title-icon"></i>Create New Group
+      </h4>
+    </div>
+    <div class="card-body p-4">
+      <form #groupForm="ngForm" (ngSubmit)="addGroup()" novalidate>
+        <!-- Group Name -->
+        <div class="mb-4">
+          <label for="groupName" class="form-label fw-medium mb-2">
+            <i class="fas fa-tag me-2 text-primary"></i>Group Name
+          </label>
+          <div class="input-with-icon">
+            <i class="fas fa-font input-icon"></i>
+            <input
+              type="text"
+              id="groupName"
+              name="groupName"
+              [(ngModel)]="group.groupName"
+              placeholder="Enter group name"
+              class="form-control"
+              #groupName="ngModel"
+              required
+            />
           </div>
-    
-          <!-- Group Description -->
-          <div class="mb-4">
-            <label for="groupDescription" class="form-label fw-medium mb-2">
-              <i class="fas fa-align-left me-2 text-primary"></i>Group Description
-            </label>
-            <div class="input-with-icon">
-              <i class="fas fa-info-circle input-icon"></i>
-              <input type="text"
-                     id="groupDescription"
-                     name="groupDescription"
-                     [value]="group.groupDescription"
-                     placeholder="Brief description of this group"
-                     class="form-control"
-                     ngModel
-                     (input)="group.groupDescription=$any($event.target).value"
-                     #groupDescription="ngModel"
-                     required />
-            </div>
-            <div class="field-helper">
-              Explain the purpose of this group
-            </div>
+          <div
+            *ngIf="groupName.invalid && groupName.touched"
+            class="text-danger small"
+          >
+            Group name is required.
           </div>
-    
-          <!-- Submit Button -->
-          <div class="d-grid gap-2 mt-4">
-            <button type="submit" class="btn btn-primary btn-sm">
-              <i class="fas fa-plus-circle me-2"></i>Create Group
-            </button>
+          <div class="field-helper">
+            Choose a clear, concise name for your group
           </div>
-          
-        </form>
-      </div>
+        </div>
+
+        <!-- Group Description -->
+        <div class="mb-4">
+          <label for="groupDescription" class="form-label fw-medium mb-2">
+            <i class="fas fa-align-left me-2 text-primary"></i>Group Description
+          </label>
+          <div class="input-with-icon">
+            <i class="fas fa-info-circle input-icon"></i>
+            <input
+              type="text"
+              id="groupDescription"
+              name="groupDescription"
+              [(ngModel)]="group.groupDescription"
+              placeholder="Brief description of this group"
+              class="form-control"
+              #groupDescription="ngModel"
+              required
+            />
+          </div>
+          <div
+            *ngIf="groupDescription.invalid && groupDescription.touched"
+            class="text-danger small"
+          >
+            Description is required.
+          </div>
+          <div class="field-helper">Explain the purpose of this group</div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-flex gap-2 mt-4">
+          <button
+            type="button"
+            class="btn btn-secondary flex-grow-1"
+            (click)="onCancel()"
+          >
+            <i class="fas fa-times me-2"></i>Cancel
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary flex-grow-1 btn-sm d-flex justify-content-center align-items-center"
+            [disabled]="groupForm.invalid || loading"
+          >
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm me-2"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <i *ngIf="!loading" class="fas fa-plus-circle me-2"></i>
+            {{ loading ? "Creating..." : "Create Group" }}
+          </button>
+
+        </div>
+      </form>
     </div>
   </div>
+</div>

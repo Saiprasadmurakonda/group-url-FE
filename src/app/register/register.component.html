@@ -30,7 +30,12 @@
                   Passwords do not match.
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid || !passwordsMatch">Register</button>
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid || !passwordsMatch || isLoading">
+                <span *ngIf="!isLoading">Register</span>
+                <span *ngIf="isLoading">
+                  <i class="fas fa-spinner fa-spin me-2"></i>Registering...
+                </span>
+              </button>
               <p class="my-2">Already have an account? <a [routerLink]="['/login']">Login</a></p>
             </form>
           </div>

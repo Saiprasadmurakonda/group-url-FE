@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LinkService } from '../services/link.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-update-link',
   standalone: false,
@@ -17,10 +19,13 @@ export class UpdateLinkComponent implements OnInit {
     description: ''
   };
 
+  isUpdating: boolean = false;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private linkService: LinkService
+    private linkService: LinkService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -44,11 +49,67 @@ export class UpdateLinkComponent implements OnInit {
     // });
   }
 
-  onSubmit() {
-    this.linkService.updateLink(this.linkData).subscribe(() => {
-      alert('Link updated!');
-      this.router.navigate([`/updateLinkInExistingGroup/${this.linkData.groupId}`])
+  linkInvalid: boolean = false; // flag to show if link is not reachable
 
-    });
+  validateLinkExists(url: string): Promise<boolean> {
+    return fetch(url, { method: 'HEAD' })
+      .then(response => response.ok)
+      .catch(() => false); // catch network errors
   }
+
+
+  onCancel(){
+    // this.router.navigate([`/updateLinkInExistingGroup/${this.linkData.groupId}`])
+    this.location.back();
+  }
+
+  // onSubmit() {
+  //   this.linkService.updateLink(this.linkData).subscribe(() => {
+  //     alert('Link updated!');
+  //     this.router.navigate([`/updateLinkInExistingGroup/${this.linkData.groupId}`])
+
+  //   });
+  // }
+
+async onSubmit() {
+  if (!this.linkData.actualLink || !this.linkData.description) {
+    alert('Both Link and Description are required.');
+    return;
+  }
+
+  this.isUpdating = true;
+  this.linkInvalid = false;
+
+  // Optional: You can skip frontend URL check now that backend does it
+  // const isValid = await this.validateLinkExists(this.linkData.actualLink);
+  // if (!isValid) {
+  //   this.linkInvalid = true;
+  //   return;
+  // }
+
+  this.linkService.updateLink(this.linkData).subscribe({
+    next: () => {
+      alert('Link updated!');
+      this.isUpdating = false;  // Stop loading
+      this.router.navigate([`/updateLinkInExistingGroup/${this.linkData.groupId}`]);
+    },
+    error: (err) => {
+      console.log("ERROR", err);
+      if (err.status === 400) {
+        this.linkInvalid = true; // show message below input
+        alert(err.error?.message);
+        console.log('Link is invalid:', err.error?.message);
+        this.isUpdating = false;  // Stop loading
+      } else {
+        alert('Update failed. Please try again later.');
+      }
+    },
+    complete: () => {
+      this.isUpdating = false;  // Stop loading
+    }
+  });
+}
+
+
+
 }

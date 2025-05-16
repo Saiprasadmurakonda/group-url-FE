@@ -17,7 +17,10 @@
             <tr *ngFor="let link of links">
               <td>{{ link.actualLink }}</td>
               <td>{{ link.description }}</td>
-              <td><button class="btn btn-outline-success" (click)="updateLink(link)">Update</button></td>
+              <td>
+                <button class="btn btn-outline-success mx-2" (click)="updateLink(link)">Update</button>
+                <button class="btn btn-outline-danger" (click)="deleteLink(link.groupId,link.tag)">Delete</button>
+              </td>
             </tr>
           </tbody>      
         </table>

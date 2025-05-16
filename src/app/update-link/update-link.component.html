@@ -1,5 +1,8 @@
 <div class="container mt-5 d-flex justify-content-center">
-  <div class="card shadow rounded-4 overflow-hidden" style="width: 100%; max-width: 500px;">
+  <div
+    class="card shadow rounded-4 overflow-hidden"
+    style="width: 100%; max-width: 500px"
+  >
     <div class="card-header p-4 text-center">
       <h4 class="mb-0 fw-bold">
         <i class="fas fa-edit title-icon"></i>Update Link
@@ -11,7 +14,7 @@
         <div class="mb-3">
           <input type="hidden" name="id" [(ngModel)]="linkData.id" />
         </div>
-        
+
         <!-- Link URL -->
         <div class="mb-4">
           <label for="actualLink" class="form-label mb-2">
@@ -27,13 +30,23 @@
               [(ngModel)]="linkData.actualLink"
               placeholder="https://example.com"
               required
+              #actualLinkRef="ngModel"
             />
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="actualLinkRef.errors?.['required'] && actualLinkRef.touched"
+          >
+            Link URL is required.
+          </div>
+          <div class="text-danger" *ngIf="linkInvalid">
+            This link is invalid or unreachable.
           </div>
           <div class="field-helper">
             The complete URL including http:// or https://
           </div>
         </div>
-        
+
         <!-- Description -->
         <div class="mb-4">
           <label for="description" class="form-label mb-2">
@@ -47,21 +60,47 @@
               class="form-control"
               name="description"
               [(ngModel)]="linkData.description"
+              required
+              #descRef="ngModel"
               placeholder="Briefly describe this link"
             />
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="descRef.errors?.['required'] && descRef.touched"
+          >
+            Description is required.
           </div>
           <div class="field-helper">
             A short description to help identify this link
           </div>
         </div>
-        
+
         <!-- Action Buttons -->
         <div class="form-actions mt-4">
-          <button type="button" class="btn btn-secondary flex-grow-1">
+          <button
+            type="button"
+            class="btn btn-secondary flex-grow-1"
+            (click)="onCancel()"
+          >
             <i class="fas fa-times me-2"></i>Cancel
           </button>
-          <button type="submit" class="btn btn-primary flex-grow-1">
+          <!-- <button type="submit" class="btn btn-primary flex-grow-1">
             <i class="fas fa-save me-2"></i>Update
+          </button> -->
+          <button
+            type="submit"
+            class="btn btn-primary flex-grow-1 d-flex align-items-center justify-content-center"
+            [disabled]="isUpdating"
+          >
+            <span
+              *ngIf="isUpdating"
+              class="spinner-border spinner-border-sm me-2"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <i *ngIf="!isUpdating" class="fas fa-save me-2"></i>
+            {{ isUpdating ? "Updating..." : "Update" }}
           </button>
         </div>
       </form>

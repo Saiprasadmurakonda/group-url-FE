@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { AuthService } from './auth.service';
 import { tap } from 'rxjs/operators';
@@ -45,5 +45,20 @@ export class GroupService {
     return this.httpClient.get<any[]>(`${this.url}/api/Group/group/${groupId}/links`);
   }
 
+  deleteLink(groupId: number, tag: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.delete<any>(
+      `https://localhost:7131/deleteLink`,
+      {
+        headers,
+        params: {
+          groupId: groupId.toString(),
+          tag: tag.toString()
+        }
+      }
+    );
+  }
 
 }

@@ -1,12 +1,15 @@
 <div class="container mt-5 d-flex justify-content-center">
-  <div class="card shadow rounded-4 overflow-hidden" style="width: 100%; max-width: 500px;">
+  <div
+    class="card shadow rounded-4 overflow-hidden"
+    style="width: 100%; max-width: 500px"
+  >
     <div class="card-header p-4 text-center">
       <h4 class="mb-0 fw-bold">
         <i class="fas fa-link title-icon"></i>Add New Link
       </h4>
     </div>
     <div class="card-body p-4">
-      <form #linkForm="ngForm" (ngSubmit)="addLink()">
+      <form #linkForm="ngForm" (ngSubmit)="addLink()" novalidate>
         <!-- Group Dropdown -->
         <div class="mb-4">
           <label for="groupId" class="form-label fw-medium mb-2">
@@ -20,15 +23,19 @@
               name="groupId"
               [(ngModel)]="link.groupId"
               required
+              #groupId="ngModel"
             >
-              <option [ngValue]="null" disabled selected>Select a group</option>
+              <option [ngValue]="null" disabled>Select a group</option>
               <option *ngFor="let group of groups" [ngValue]="group.groupId">
                 {{ group.groupName }}
               </option>
             </select>
           </div>
+          <div *ngIf="groupId.invalid && groupId.touched" class="text-danger">
+            Group is required
+          </div>
         </div>
-        
+
         <!-- Long URL -->
         <div class="mb-4">
           <label for="actualLink" class="form-label fw-medium mb-2">
@@ -44,10 +51,17 @@
               placeholder="Enter the complete URL"
               class="form-control"
               required
+              #actualLink="ngModel"
             />
           </div>
+          <div
+            *ngIf="actualLink.invalid && actualLink.touched"
+            class="text-danger"
+          >
+            A valid URL is required
+          </div>
         </div>
-        
+
         <!-- Description -->
         <div class="mb-4">
           <label for="description" class="form-label fw-medium mb-2">
@@ -63,13 +77,38 @@
               placeholder="Brief description of this link"
               class="form-control"
               required
+              #description="ngModel"
             />
           </div>
+          <div
+            *ngIf="description.invalid && description.touched"
+            class="text-danger"
+          >
+            Description is required
+          </div>
         </div>
-        
+
+        <!-- Submit Button -->
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-primary btn-sm">
-            <i class="fas fa-plus me-2"></i>Add Link
+          <button
+            type="button"
+            class="btn btn-secondary flex-grow-1"
+            (click)="onCancel()"
+          >
+            <i class="fas fa-times me-2"></i>Cancel
+          </button>
+          
+          <button
+            type="submit"
+            class="btn btn-primary btn-sm"
+            [disabled]="linkForm.invalid || isLoading"
+          >
+            <span *ngIf="!isLoading">
+              <i class="fas fa-plus me-2"></i>Add Link
+            </span>
+            <span *ngIf="isLoading">
+              <i class="fas fa-spinner fa-spin me-2"></i>Adding...
+            </span>
           </button>
         </div>
       </form>

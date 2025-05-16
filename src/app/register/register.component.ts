@@ -16,10 +16,13 @@ export class RegisterComponent {
   confirmPassword: string = '';
   passwordsMatch: boolean = true;
   confirmPasswordTouched: boolean = false;
+
+  isLoading: boolean = false;
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(form: NgForm) {
     if (form.valid && this.passwordsMatch) {
+      this.isLoading = true;
       this.authService.register(this.user).subscribe(
         response => {
           console.log('Registration successful', response);
@@ -28,6 +31,7 @@ export class RegisterComponent {
           this.router.navigate(['login']);
         },
         error => {
+          this.isLoading = false;
           console.error('Registration failed', error);
           // Handle error response which now has a message property
           if (error.error && error.error.message) {
