@@ -27,9 +27,8 @@ const routes: Routes = [
   { path: 'updateLinkInExistingGroup/:groupId', component: UpdateLinkInExistingGroupComponent } ,
   { path: 'update-link/:id', component: UpdateLinkComponent }  ,
   { path: 'deleteGroup/:groupId', component: DeleteGroupComponent },
-  { path: 'individualgroup', component: IndividualgroupComponent }
-
- 
+  { path: 'individualgroup', component: IndividualgroupComponent },
+  { path: ':groupurl/0', component: IndividualgroupComponent }
 
 
   

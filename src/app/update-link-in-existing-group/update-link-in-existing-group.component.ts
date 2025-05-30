@@ -17,6 +17,7 @@ export class UpdateLinkInExistingGroupComponent implements OnInit{
   groupId: number = 0;
   links: any[] = [];
   isLoading = true;
+  noLinksFound = false;
 
 
   constructor(
@@ -60,14 +61,36 @@ addLink(){
   this.router.navigate(['/addlink',this.groupId]);
 }
 
+// deleteLink(groupId: number, tag: number): void {
+//   if(confirm('Are you sure you want to delete this link?')){
+//     this.groupService.deleteLink(groupId, tag).subscribe(
+//       (response) => {
+//         console.log('Link deleted successfully:', response);
+//         alert('Link deleted successfully');
+//         // Optionally, refresh the links after deletion
+//         this.fetchGroupLinks();
+//       }, 
+//       (error) => {
+//         console.error('Error deleting link:', error);
+//         // Handle error if needed
+//       }
+//     );
+//   }
+// }
+
 deleteLink(groupId: number, tag: number): void {
   if(confirm('Are you sure you want to delete this link?')){
     this.groupService.deleteLink(groupId, tag).subscribe(
       (response) => {
         console.log('Link deleted successfully:', response);
+        
+        // Remove the deleted link from the local array
+        this.links = this.links.filter(link => link.tag !== tag);
+        
+        // Update the noLinksFound flag
+        this.noLinksFound = this.links.length === 0;
+        
         alert('Link deleted successfully');
-        // Optionally, refresh the links after deletion
-        this.fetchGroupLinks();
       }, 
       (error) => {
         console.error('Error deleting link:', error);

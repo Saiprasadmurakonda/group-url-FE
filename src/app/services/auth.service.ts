@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  url = 'https://localhost:7131';
+  url = 'https://localhost:7087';
   private authStatusSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
   public authStatus$ = this.authStatusSubject.asObservable();
 

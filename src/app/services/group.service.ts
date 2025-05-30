@@ -8,7 +8,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class GroupService {
-  url = 'https://localhost:7131'
+  url = 'https://localhost:7087'
   private groupsSubject = new BehaviorSubject<any[]>([]);
   public groups$ = this.groupsSubject.asObservable();
 
@@ -45,12 +45,16 @@ export class GroupService {
     return this.httpClient.get<any[]>(`${this.url}/api/Group/group/${groupId}/links`);
   }
 
+  getGroupByUrl(groupurl: string): Observable<any> {
+    return this.httpClient.get(`${this.url}/getgroup/${groupurl}`);
+  }
+
   deleteLink(groupId: number, tag: number): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.httpClient.delete<any>(
-      `https://localhost:7131/deleteLink`,
+      `https://localhost:7087/deleteLink`,
       {
         headers,
         params: {
