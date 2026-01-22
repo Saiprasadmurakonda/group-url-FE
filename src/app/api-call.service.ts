@@ -11,7 +11,7 @@ export class ApiCallService {
 
   baseUrl:string;
   constructor(private http:HttpClient) { 
-    this.baseUrl="https://localhost:7087/";
+    this.baseUrl="http://localhost:5171/";
   }
 
   addGroup(group: any, options: { headers: HttpHeaders }): Observable<any> {
@@ -23,7 +23,7 @@ export class ApiCallService {
   }
 
   deleteGroup(groupId: number, options: any) {
-    return this.http.delete(`https://localhost:7087/api/group/delete/${groupId}`, options);
+    return this.http.delete(`http://localhost:5171/api/group/delete/${groupId}`, options);
   }
   
 }

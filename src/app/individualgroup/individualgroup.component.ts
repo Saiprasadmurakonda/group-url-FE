@@ -13,7 +13,7 @@ export class IndividualgroupComponent {
 
   group: any;
   links: any[] = [];
-  url: string = 'https://localhost:7087/';
+  url: string = 'http://localhost:5171/';
   groupurl: string = '';
   noLinksFound: boolean = false;
 

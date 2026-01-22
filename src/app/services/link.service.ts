@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LinkService {
 
-  url = 'https://localhost:7087'
+  url = 'http://localhost:5171'
 
   constructor(private http:HttpClient) { }
   getLinkById(id: any): Observable<any> {

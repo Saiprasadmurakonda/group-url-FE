@@ -8,7 +8,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class GroupService {
-  url = 'https://localhost:7087'
+  url = 'http://localhost:5171'
   private groupsSubject = new BehaviorSubject<any[]>([]);
   public groups$ = this.groupsSubject.asObservable();
 
@@ -54,7 +54,7 @@ export class GroupService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.httpClient.delete<any>(
-      `https://localhost:7087/deleteLink`,
+      `http://localhost:5171/deleteLink`,
       {
         headers,
         params: {
